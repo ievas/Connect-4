@@ -80,7 +80,7 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+  //make a div and insert into correct table cell
   let piece = document.createElement("div");
   piece.setAttribute("class", `p${currPlayer} piece`);
   let cell = document.getElementById(`${y}-${x}`);
@@ -97,13 +97,7 @@ function endGame(msg) {
   }, 0)
 }
 
-/** handleClick: handle click of column top to play piece 
- * There are several pieces to write/fix here:
-
-this never updates the board variable with the player #. Fix.
-add a check for “is the entire board filled” [hint: the JS every method on arrays would be especially nice here!]
-add code to switch currPlayer between 1 and 2. This would be a great place for a ternary function.
-*/
+/** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
   if(gameIsRunning == false)
@@ -149,14 +143,13 @@ function handleClick(evt) {
     }
   };
 
-/** checkForWin: check board cell-by-cell for "does a win start here?" */
+/** checkForWin: check board cell-by-cell */
 
 function checkForWin() {
   function _win(cells) {
     // Check four cells to see if they're all color of current player
     //  - cells: list of four (y, x) cells
     //  - returns true if all are legal coordinates & all match currPlayer
-
 
     return cells.every(
       ([y, x]) =>
@@ -168,12 +161,10 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
-
   for (var y = 0; y < HEIGHT; y++) {//loop through all the rows
     for (var x = 0; x < WIDTH; x++) {//loop though all the cells in a row
-      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];//create an array with four next cells horizontally //cheking all the cells everytime?
-      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];//create an array with four next cells vertically//checking all the the cells everytime?
+      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];//create an array with four next cells horizontally //cheking all the cells everytime
+      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];//create an array with four next cells vertically//checking all the the cells everytime
       var diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];//create an array with four next cells moving one cell up, one to the right
       var diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];//create an array with four next cells moving one cell up, one to the left
 
